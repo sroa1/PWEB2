@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Index</title>
+    <script>
+        function validar() {
+            var nome = formulario.nome.value;
+            var senha = formulario.senha.value;
+            var repsenha = formulario.repsenha.value;
+            var email = formulario.Email.value;
+
+            if (nome == "") {
+                alert('O campo do nome está vazio, preencha!')              
+            }
+            if (senha == "") {
+                alert('O campo da senha está vazio, preencha!')              
+            }
+            if (repsenha == "") {
+                alert('Use a mesma senha!')              
+            }
+            if(email == ""){
+                alert('Preencha o campo do email!')
+            }
+        }
+    </script>
 </head>
+
 <body>
-    <h1>Hello World!</h1>
+    <form name="formulario" action="#" method="POST">
+        Nome:<input type="text" name="nome"><br>
+        Senha:<input type="password" name="senha"><br>
+        Senha repetir: <input type="password" name="repsenha"><br>
+        email:<input type="email" name="Email"><br>
+        <input type="submit" onclick="return validar()">
+        <input type="reset">
+    </form>
 </body>
+
 </html>
