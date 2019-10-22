@@ -7,37 +7,95 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index</title>
     <script>
+        function verificarNome(){
+            
+        }
         function validar() {
             var nome = formulario.nome.value;
             var senha = formulario.senha.value;
-            var repsenha = formulario.repsenha.value;
-            var email = formulario.Email.value;
+            var rep_senha = formulario.rep_senha.value;
+            var email = formulario.email.value;
+            var erroNoNome = document.getElementById("ErroNoNome");
+            var erroNoEmail = document.getElementById("ErroNoEmail");
+            var erroNaSenha = document.getElementById("ErroNaSenha");
+            var erroNaRepSenha = document.getElementById("ErroNaRepSenha");
+            var erroNoCheckbox = document.getElementById("ErroNoCheckbox");
 
-            if (nome == "") {
-                alert('O campo do nome está vazio, preencha!')              
+            if (nome == "" || nome.length < 3) {
+                erroNoNome.innerHTML = "Preencha corretamente o campo do nome, com pelo menos 3 caracteres!";
+                formulario.nome.focus();
+                return false;
             }
-            if (senha == "") {
-                alert('O campo da senha está vazio, preencha!')              
+            else{
+                erroNoNome.innerHTML = "";
             }
-            if (repsenha == "") {
-                alert('Use a mesma senha!')              
+            if (email == "" || email.indexOf("@") == -1 || email.indexOf(".") == -1){
+                erroNoEmail.innerHTML = "Insira um email válido!";
+                formulario.email.focus();
+                return false;
             }
-            if(email == ""){
-                alert('Preencha o campo do email!')
+            else{
+                erroNoEmail.innerHTML = "";
             }
+            if (senha == "" || senha.length < 6) {
+                erroNaSenha.innerHTML = "Insira uma senha válida, com pelo menos 6 caracteres!";
+                formulario.senha.focus();
+                return false;
+            }
+            else{
+                erroNaSenha.innerHTML = "";
+            }
+            if (rep_senha != senha || rep_senha == "") {
+                erroNaRepSenha.innerHTML = "Use a mesma senha";
+                formulario.rep_senha.focus();
+                return false;
+            }
+            else{
+                erroNaRepSenha.innerHTML = "";
+            }
+            if(document.getElementById("redes").checked == false && document.getElementById("programacao").checked == false && document.getElementById("montagemEManutencao")){
+                erroNoCheckbox.innerHTML = "Selecione pelo menos uma preferência!";
+                return false;
+            }
+            
         }
     </script>
 </head>
 
 <body>
-    <form name="formulario" action="#" method="POST">
-        Nome:<input type="text" name="nome"><br>
-        Senha:<input type="password" name="senha"><br>
-        Senha repetir: <input type="password" name="repsenha"><br>
-        email:<input type="email" name="Email"><br>
-        <input type="submit" onclick="return validar()">
-        <input type="reset">
-    </form>
+    <div id="form">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Preencha o formulário abaixo com seus dados:</h1>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-4">...</div>
+            <div class="col-md-4">
+                <form action="" method="POST" name="formulario">
+                    <fieldset>
+                        Nome:<input id="nome" type="text" name="nome"><small id="ErroNoNome"></small><br>
+                        Email:<input type="text" name="email"><small id="ErroNoEmail"></small><br>
+                        Senha:<input type="password" name="senha"><small id="ErroNaSenha"></small><br>
+                        Repetir senha:<input type="password" name="rep_senha"><small id="ErroNaRepSenha"></small><br>
+                        Módulo:
+                        <select>
+                            <option>Primeiro</option>
+                            <option>Segundo</option>
+                            <option>Terceiro</option>
+                        </select><br>
+                        Preferências:
+                        Redes<input type="checkbox" id="redes" value="redes">
+                        Programação<input type="checkbox" id="programacao" value="programacao">
+                        Montagem e manutenção<input type="checkbox" id="montagemEManutencao" value="montagemEManutencao"><small id="ErroNoCheckbox"></small><br>
+                        <input type="reset">
+                        <input type="submit" onclick="return validar()">
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-md-4">...</div>
+        </div>
+    </div>
 </body>
 
 </html>
