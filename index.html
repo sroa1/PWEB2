@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
+    <title>Formulário</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script>
-        function verificarNome(){
-            
-        }
         function validar() {
             var nome = formulario.nome.value;
             var senha = formulario.senha.value;
@@ -25,77 +25,116 @@
                 erroNoNome.innerHTML = "Preencha corretamente o campo do nome, com pelo menos 3 caracteres!";
                 formulario.nome.focus();
                 return false;
-            }
-            else{
+            } else {
                 erroNoNome.innerHTML = "";
             }
-            if (email == "" || email.indexOf("@") == -1 || email.indexOf(".") == -1){
-                erroNoEmail.innerHTML = "Insira um email válido!";
+
+            if (email == "" || email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+                erroNoEmail.innerHTML = "Insira um email que tenha '@'' e '.'!";
                 formulario.email.focus();
                 return false;
-            }
-            else{
+            } else {
                 erroNoEmail.innerHTML = "";
             }
+
             if (senha == "" || senha.length < 6) {
                 erroNaSenha.innerHTML = "Insira uma senha válida, com pelo menos 6 caracteres!";
                 formulario.senha.focus();
                 return false;
-            }
-            else{
+            } else {
                 erroNaSenha.innerHTML = "";
             }
+
             if (rep_senha != senha || rep_senha == "") {
                 erroNaRepSenha.innerHTML = "Use a mesma senha";
                 formulario.rep_senha.focus();
                 return false;
-            }
-            else{
+            } else {
                 erroNaRepSenha.innerHTML = "";
             }
-            if(document.getElementById("redes").checked == false && document.getElementById("programacao").checked == false && document.getElementById("montagemEManutencao")){
+
+            if ((document.getElementById("redes").checked == false && document.getElementById("programacao").checked == false) && document.getElementById("montagemEManutencao").checked == false) {
                 erroNoCheckbox.innerHTML = "Selecione pelo menos uma preferência!";
                 return false;
+            } else {
+                erroNoCheckbox.innerHTML = "";
             }
-            
         }
     </script>
+
 </head>
 
 <body>
-    <div id="form">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Preencha o formulário abaixo com seus dados:</h1>
+    <div class="container" style="display: inline;">
+        <div class="row  justify-content-center">
+            <div class="col-3">
+
             </div>
-        </div><br>
-        <div class="row">
-            <div class="col-md-4">...</div>
-            <div class="col-md-4">
-                <form action="" method="POST" name="formulario">
-                    <fieldset>
-                        Nome:<input id="nome" type="text" name="nome" placeholder="Ex.: Ana"><small id="ErroNoNome"></small><br>
-                        Email:<input type="text" name="email" placeholder="Ex.: ana@gmail.com"><small id="ErroNoEmail"></small><br>
-                        Senha:<input type="password" name="senha"><small id="ErroNaSenha"></small><br>
-                        Repetir senha:<input type="password" name="rep_senha"><small id="ErroNaRepSenha"></small><br>
-                        Módulo:
-                        <select>
+        </div>
+        <div class="row justify-content-center" >
+            <div class="col-6" style="vertical-align: text-top;">
+                <h3>Preencha o formulário abaixo com seus dados:</h3>
+                <form action="#" method="POST" name="formulario">
+                    <div class="form-group">
+                        <label>Nome:</label>
+                        <input id="nome" type="text" name="nome" placeholder="Ex.: Ana"><small id="ErroNoNome"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="text" name="email" placeholder="Ex.: ana@gmail.com"><small
+                            id="ErroNoEmail"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha:</label>
+                        <input type="password" name="senha"><small id="ErroNaSenha"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Repetir senha:</label>
+                        <input type="password" name="rep_senha"><small id="ErroNaRepSenha"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Módulo:</label>
+                        <select class="form-control">
                             <option>Primeiro</option>
                             <option>Segundo</option>
                             <option>Terceiro</option>
-                        </select><br>
-                        Preferências:
-                        Redes<input type="checkbox" id="redes" value="redes">
-                        Programação<input type="checkbox" id="programacao" value="programacao">
-                        Montagem e manutenção<input type="checkbox" id="montagemEManutencao" value="montagemEManutencao"><small id="ErroNoCheckbox"></small><br>
-                        <input type="reset">
-                        <input type="submit" onclick="return validar()">
-                    </fieldset>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferências:</label>
+                        <label for="redes">Redes</label>
+                        <input type="checkbox" id="redes" value="redes">
+                        <label for="programacao">Programação</label>
+                        <input type="checkbox" id="programacao" value="programacao">
+                        <label for="montagemEManutencao">Montagem e manutenção</label>
+                        <input type="checkbox" id="montagemEManutencao" value="montagemEManutencao"><small
+                            id="ErroNoCheckbox"></small><br>
+                    </div>
+
+                    <button type="reset" class="btn btn-primary">Limpar</button>
+                    <button type="submit" class="btn btn-primary" onclick="return validar()">Enviar</button>
                 </form>
             </div>
-            <div class="col-md-4">...</div>
         </div>
+        <div class="row  justify-content-center">
+            <div class="col-3">
+        
+            </div>
+        </div>
+
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
